@@ -1,44 +1,27 @@
 package Item;
 
-import groovy.json.JsonOutput;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ArrayToJson {
 
+    //instanceof
     //배열 값을 받은 값을 json 으로 변환
-    public JSONObject getJSON(String[] key, Object[]... value) {
-        JSONObject json = null;
+    public JSONObject getJSON(Object[] key, Object[] value) {
+        assert key.length == value.length;
+        Map<Object, Object> map = new HashMap<>();
+        for (int i = 0; i<key.length; i++) map.put(key[i], value[i]);
+        return new JSONObject(map);
+    }
 
-        List<Object> list = Arrays.asList(value);
-        list.forEach(o -> {
-            if (o instanceof String) {
-
-            } else if (o instanceof Integer) {
-
-            } else if (o instanceof Long) {
-
-            } else if (o instanceof Character) {
-
-            } else if (o instanceof Boolean) {
-
-            } else if (o instanceof Byte) {
-
-            } else if (o instanceof Short) {
-
-            } else if (o instanceof Float) {
-
-            } else if (o instanceof Double) {
-
-            } else {
-
-            }
-        });
-
-        return json;
+    public JSONObject getJSON(Object[] key, Object[]... value) {
+        assert key.length == value.length;
+        Map<Object, Object[]> map = new HashMap<>();
+        for (int i = 0; i<key.length; i++) map.put(key[i], value[i]);
+        return new JSONObject(map);
     }
 }
